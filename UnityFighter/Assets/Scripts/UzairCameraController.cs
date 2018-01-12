@@ -12,7 +12,7 @@ public class UzairCameraController : MonoBehaviour
         offset = target.transform.position - transform.position;
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         float currentAngle = transform.eulerAngles.y;
         float desiredAngle = target.transform.eulerAngles.y;
@@ -21,6 +21,6 @@ public class UzairCameraController : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, angle, 0);
         transform.position = target.transform.position - (rotation * offset);
 
-        //transform.LookAt(target.transform);
+        transform.LookAt(target.transform);
     }
 }

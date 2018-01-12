@@ -95,6 +95,7 @@
     <Compile Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Scripts\Triangles.cs" />
     <Compile Include="Assets\Prefabs\Knight\scripts\rotator.cs" />
     <Compile Include="Assets\Scripts\UzairCameraController.cs" />
+    <Compile Include="Assets\Scripts\UzairEnemyController.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerController.cs" />
   </ItemGroup>
   <ItemGroup>

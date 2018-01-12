@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class UzairPlayerController : MonoBehaviour {
 
     public float speed = 6f;
@@ -9,47 +10,75 @@ public class UzairPlayerController : MonoBehaviour {
     Vector3 movement;
     Animator anim;
     Rigidbody playerRigidBody;
-    int floorMask;
-    float camRayLength = 100f;
+
+    float h;
+    float v;
+    float f;
+    float ff;
+    float j;
+    float mx;
+    float my;
 
     private void Awake()
     {
-        floorMask = LayerMask.GetMask("Floor");
         anim = GetComponent<Animator>();
         playerRigidBody = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
+        f = Input.GetAxisRaw("Fire1");
+        ff = Input.GetAxisRaw("Fire2");
+        j = Input.GetAxisRaw("Jump");
+        mx = Input.GetAxisRaw("Mouse X");
+        my = Input.GetAxisRaw("Mouse Y");
 
-        Turning(h);
-        Animating(v);
-    }
-
-    void Turning(float h)
-    {
         
-        if (Input.GetAxis("Mouse X") > 0)
-        {
-            transform.Rotate(Vector3.up * speed);
-        }
-        else if (Input.GetAxis("Mouse X") < 0)
-        {
-            transform.Rotate(Vector3.up * -speed);
-        }
+        Moving();
+        Turning();
+        Jumping();
+        Attack();
+
     }
 
-    void Animating(float v)
+    void Moving()
     {
         bool walking = (v != 0f);
         anim.SetBool("Idle", !walking);
         anim.SetBool("Moving", walking);
-        anim.SetInteger("MoveSpeed", 1);
+        anim.SetInteger("Speed", -1);
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            anim.SetInteger("MoveSpeed", 2);
+            anim.SetInteger("Speed", 1);
         }
     }
+
+    void Turning()
+    {
+        if (mx > 0)
+            transform.Rotate(Vector3.up * speed);
+        else if (mx < 0)
+            transform.Rotate(Vector3.up * -speed);
+    }
+
+    void Jumping()
+    {
+        if (j != 0)
+        {
+            //anim.SetTrigger("Jump");
+            playerRigidBody.AddForce(new Vector3(0, 100));
+        }
+    }
+
+    void Attack()
+    {
+        if (f != 0)
+        {
+            anim.SetTrigger("Attack");
+        }
+    }
+
+
 }
