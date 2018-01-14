@@ -3,24 +3,35 @@ using System.Collections;
 
 public class UzairCameraController : MonoBehaviour
 {
-    public GameObject target;
-    public float damping = 1;
-    Vector3 offset;
+    public float turnSpeed = 4f;
+    public float height = 3f;
+    public float distance = -4f;
+    public GameObject player;
 
-    void Start()
+    Vector3 offsetX;
+    Vector3 offsetY;
+
+    float mx;
+    float my;
+
+    private void Start()
     {
-        offset = target.transform.position - transform.position;
+        offsetX = new Vector3(player.transform.position.x, player.transform.position.y + height,
+            player.transform.position.z - distance);
+
+        offsetY = new Vector3(player.transform.position.x, player.transform.position.y,
+            player.transform.position.z - distance);
     }
 
-    void FixedUpdate()
+    private void LateUpdate()
     {
-        float currentAngle = transform.eulerAngles.y;
-        float desiredAngle = target.transform.eulerAngles.y;
-        float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * damping);
+        mx = Input.GetAxisRaw("Mouse X");
+        my = Input.GetAxisRaw("Mouse Y");
 
-        Quaternion rotation = Quaternion.Euler(0, angle, 0);
-        transform.position = target.transform.position - (rotation * offset);
+        offsetX = Quaternion.AngleAxis(mx * turnSpeed, Vector3.up) * offsetX;
+        offsetY = Quaternion.AngleAxis(my * turnSpeed, Vector3.right) * offsetY;
 
-        transform.LookAt(target.transform);
+        transform.position = player.transform.position + offsetX + offsetY;
+        transform.LookAt(player.transform.position);
     }
 }

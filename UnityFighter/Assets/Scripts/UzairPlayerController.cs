@@ -11,13 +11,13 @@ public class UzairPlayerController : MonoBehaviour {
     Animator anim;
     Rigidbody playerRigidBody;
 
+    bool isGrounded = true;
+
     float h;
     float v;
     float f;
     float ff;
     float j;
-    float mx;
-    float my;
 
     private void Awake()
     {
@@ -25,19 +25,18 @@ public class UzairPlayerController : MonoBehaviour {
         playerRigidBody = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
         f = Input.GetAxisRaw("Fire1");
         ff = Input.GetAxisRaw("Fire2");
         j = Input.GetAxisRaw("Jump");
-        mx = Input.GetAxisRaw("Mouse X");
-        my = Input.GetAxisRaw("Mouse Y");
 
         
         Moving();
         Turning();
+        FlightSequence();
         Jumping();
         Attack();
 
@@ -57,9 +56,9 @@ public class UzairPlayerController : MonoBehaviour {
 
     void Turning()
     {
-        if (mx > 0)
+        if (h > 0)
             transform.Rotate(Vector3.up * speed);
-        else if (mx < 0)
+        else if (h < 0)
             transform.Rotate(Vector3.up * -speed);
     }
 
@@ -67,9 +66,14 @@ public class UzairPlayerController : MonoBehaviour {
     {
         if (j != 0)
         {
-            //anim.SetTrigger("Jump");
-            playerRigidBody.AddForce(new Vector3(0, 100));
+            playerRigidBody.AddForce(new Vector3(0,50));
+            anim.SetTrigger("Jump");
         }
+    }
+
+    void FlightSequence()
+    {
+        anim.SetBool("OnGround", checkIfGrounded());
     }
 
     void Attack()
@@ -80,5 +84,8 @@ public class UzairPlayerController : MonoBehaviour {
         }
     }
 
-
+    bool checkIfGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, 0.5f);
+    }
 }
