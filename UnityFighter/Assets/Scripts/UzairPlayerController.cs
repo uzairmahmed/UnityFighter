@@ -37,7 +37,7 @@ public class UzairPlayerController : MonoBehaviour {
         Moving();
         Turning();
         FlightSequence();
-        Jumping();
+        //Jumping();
         Attack();
 
     }
@@ -66,7 +66,7 @@ public class UzairPlayerController : MonoBehaviour {
     {
         if (j != 0)
         {
-            playerRigidBody.AddForce(new Vector3(0,50));
+            playerRigidBody.AddForce(new Vector3(0,500));
             anim.SetTrigger("Jump");
         }
     }
@@ -80,6 +80,7 @@ public class UzairPlayerController : MonoBehaviour {
     {
         if (f != 0)
         {
+            anim.SetBool("Moving", false);
             anim.SetTrigger("Attack");
         }
     }

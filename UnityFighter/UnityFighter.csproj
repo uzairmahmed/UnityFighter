@@ -94,8 +94,12 @@
     <Compile Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
     <Compile Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Scripts\Triangles.cs" />
     <Compile Include="Assets\Prefabs\Knight\scripts\rotator.cs" />
+    <Compile Include="Assets\Scripts\UzairAbstHealth.cs" />
     <Compile Include="Assets\Scripts\UzairCameraController.cs" />
+    <Compile Include="Assets\Scripts\UzairEnemyAttack.cs" />
     <Compile Include="Assets\Scripts\UzairEnemyController.cs" />
+    <Compile Include="Assets\Scripts\UzairEnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\UzairPlayerAttack.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerController.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerHealth.cs" />
   </ItemGroup>
@@ -162,6 +166,7 @@
     <None Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
     <None Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
     <None Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Shaders\frag_ao.cginc" />
+    <None Include="Assets\Prefabs\ErbGameArt\AnimeWeapon\Shaders\SwordLightning.shader" />
     <None Include="Assets\Prefabs\Knight\shaders\clothshader.shader" />
     <None Include="Assets\Prefabs\Knight\shaders\particledistort.shader" />
     <None Include="Assets\Prefabs\Knight\shaders\reflectAdd.shader" />

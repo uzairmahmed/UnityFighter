@@ -27,14 +27,6 @@ public class UzairEnemyController : MonoBehaviour {
         f1 = sc.radius;
         nav.SetDestination(player.position);
         transform.LookAt(player);
-        if (nav.remainingDistance < sc.radius*2)
-        {
-            anim.SetBool("Moving", false);
-            anim.SetTrigger("Attack");
-        }
-        else
-        {
-            anim.SetBool("Moving", true);
-        }
+        anim.SetBool("Moving", true);
     }
 }
