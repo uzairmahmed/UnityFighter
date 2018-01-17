@@ -9,29 +9,27 @@ public class UzairEnemyHealth : MonoBehaviour {
     public int scoreValue = 10;
 
     Animator anim;
-    ParticleSystem hitParticles;
     CapsuleCollider capsuleCollider;
+    UzairEnemyController enemyMovement;
+    Rigidbody rg;
     bool isDead;
     bool isSinking;
 
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
-        hitParticles = GetComponentInChildren<ParticleSystem>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        rg = GetComponent<Rigidbody>();
 
         currentHealth = startingHealth;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (isSinking)
-        {
-            transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
-        }
+        
 	}
 
-    public void TakeDamage(int amount/*, Vector3 hitPoint*/)
+    public void TakeDamage(int amount, Vector3 hitPoint)
     {
         if (isDead)
         {
@@ -39,8 +37,8 @@ public class UzairEnemyHealth : MonoBehaviour {
         }
 
         currentHealth -= amount;
-        //hitParticles.transform.position = hitPoint;
-        //hitParticles.Play();
+
+        rg.AddExplosionForce(1000, hitPoint, 10);
 
         if (currentHealth <= 0)
         {
@@ -52,8 +50,8 @@ public class UzairEnemyHealth : MonoBehaviour {
     {
         isDead = true;
         capsuleCollider.isTrigger = true;
-
-        anim.SetTrigger("Dead");
+        anim.SetTrigger("Die");
+        enemyMovement.enabled = false;
     }
 
     public void StartSinking()
@@ -63,5 +61,12 @@ public class UzairEnemyHealth : MonoBehaviour {
         isSinking = true;
 
         Destroy(gameObject, 2f);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Weapon")
+        {
+            TakeDamage(other.GetComponent<UzairSwordProp>().getDamage(), other.transform.position);
+        }
     }
 }
