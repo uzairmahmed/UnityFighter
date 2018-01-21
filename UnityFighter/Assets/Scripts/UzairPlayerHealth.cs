@@ -7,25 +7,34 @@ public class UzairPlayerHealth : UzairBaseHealth {
     
     public Slider healthSlider;
     public Image damageImage;
- 
+
+    public Slider energySlider;
+
+    public float startingEnergy = 100;
+    public float currentEnergy;
+
+    public int energyLossRate = 2;
+
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
         rg = GetComponent<Rigidbody>();
         movement = GetComponent<UzairBaseController>();
-        spotLight = GetComponent<Light>();
+
+        currentEnergy = startingEnergy;
     }
 
     // Update is called once per frame
     void Update()
     {
+        energyManager();
     }
 
-    public void TakeDamage(int amount)
+    void energyManager()
     {
-        currentHealth -= amount;
-        healthSlider.value = currentHealth;
+        currentEnergy -= energyLossRate * Time.deltaTime;
+        energySlider.value = currentEnergy;
     }
 
     protected override void Death()
@@ -37,7 +46,6 @@ public class UzairPlayerHealth : UzairBaseHealth {
 
     protected override void HitMethod(Vector3 hitPoint, int knockBack)
     {
-        return;
-        //rg.AddExplosionForce(knockBack, hitPoint, 10);
+        healthSlider.value = currentHealth;
     }
 }

@@ -7,7 +7,7 @@ public class UzairBaseHealth : MonoBehaviour {
     protected Animator anim;
     protected Rigidbody rg;
     protected UzairBaseController movement;
-    protected Light spotLight;
+    public Light spotLight;
 
     protected bool isDead;
     protected bool isHit;
@@ -20,10 +20,6 @@ public class UzairBaseHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //anim = GetComponent<Animator>();
-        //rg = GetComponent<Rigidbody>();
-        //movement = GetComponent<UzairBaseController>();
-        //spotLight = GetComponent<Light>();
 
         currentHealth = startingHealth;
         spotLight.color = hitColor;

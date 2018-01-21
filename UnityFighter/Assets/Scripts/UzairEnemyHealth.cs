@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UzairEnemyHealth : UzairBaseHealth {
-    public int scoreValue = 10;
-
+    public GameObject energySphere;
     CapsuleCollider capsuleCollider;
 
 	// Use this for initialization
@@ -12,23 +11,11 @@ public class UzairEnemyHealth : UzairBaseHealth {
         anim = GetComponent<Animator>();
         rg = GetComponent<Rigidbody>();
         movement = GetComponent<UzairBaseController>();
-        spotLight = GetComponent<Light>();
-
         capsuleCollider = GetComponent<CapsuleCollider>();
         rg = GetComponent<Rigidbody>();
 	}
 
     private void Update(){ }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //if (other.gameObject.tag == "Weapon")
-        //{
-        //    TakeDamage(other.GetComponent<UzairSwordProp>().getDamage(),
-        //        other.transform.position,
-        //        other.GetComponent<UzairSwordProp>().getDamage());
-        //}
-    }
 
     protected override void Death()
     {
@@ -36,7 +23,10 @@ public class UzairEnemyHealth : UzairBaseHealth {
         anim.SetTrigger("Die");
         movement.enabled = false;
 
+        Instantiate(energySphere, new Vector3(transform.position.x, 1, transform.position.z), Quaternion.identity);
+
         capsuleCollider.isTrigger = true;
+
     }
 
     protected override void HitMethod(Vector3 hitPoint, int knockBack)

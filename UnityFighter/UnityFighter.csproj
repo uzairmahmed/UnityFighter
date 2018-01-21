@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\UzairBaseHealth.cs" />
     <Compile Include="Assets\Scripts\UzairEnemyController.cs" />
     <Compile Include="Assets\Scripts\UzairEnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\UzairOrbProp.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerController.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerHealth.cs" />
     <Compile Include="Assets\Scripts\UzairSwordProp.cs" />
