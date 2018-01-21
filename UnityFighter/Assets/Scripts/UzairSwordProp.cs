@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UzairSwordProp : MonoBehaviour {
 
-    int swordDamage = 10;
+    int swordDamage = 25;
     int swordKnockBack = 5;
 
     public void setDamage(int dam)
@@ -26,6 +26,7 @@ public class UzairSwordProp : MonoBehaviour {
     {
         return swordKnockBack;
     }
+    
 
     // Use this for initialization
     void Start () {

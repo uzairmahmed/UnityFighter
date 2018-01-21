@@ -2,71 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UzairEnemyHealth : MonoBehaviour {
-    public int startingHealth = 100;
-    public int currentHealth;
-    public float sinkSpeed = 2.5f;
+public class UzairEnemyHealth : UzairBaseHealth {
     public int scoreValue = 10;
 
-    Animator anim;
     CapsuleCollider capsuleCollider;
-    UzairEnemyController enemyMovement;
-    Rigidbody rg;
-    bool isDead;
-    bool isSinking;
 
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
+        rg = GetComponent<Rigidbody>();
+        movement = GetComponent<UzairBaseController>();
+        spotLight = GetComponent<Light>();
+
         capsuleCollider = GetComponent<CapsuleCollider>();
         rg = GetComponent<Rigidbody>();
-
-        currentHealth = startingHealth;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
 	}
 
-    public void TakeDamage(int amount, Vector3 hitPoint)
-    {
-        if (isDead)
-        {
-            return;
-        }
+    private void Update(){ }
 
-        currentHealth -= amount;
-
-        rg.AddExplosionForce(1000, hitPoint, 10);
-
-        if (currentHealth <= 0)
-        {
-            Death();
-        }
-    }
-
-    void Death()
-    {
-        isDead = true;
-        capsuleCollider.isTrigger = true;
-        anim.SetTrigger("Die");
-        enemyMovement.enabled = false;
-    }
-
-    public void StartSinking()
-    {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
-        isSinking = true;
-
-        Destroy(gameObject, 2f);
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Weapon")
-        {
-            TakeDamage(other.GetComponent<UzairSwordProp>().getDamage(), other.transform.position);
-        }
+        //if (other.gameObject.tag == "Weapon")
+        //{
+        //    TakeDamage(other.GetComponent<UzairSwordProp>().getDamage(),
+        //        other.transform.position,
+        //        other.GetComponent<UzairSwordProp>().getDamage());
+        //}
     }
+
+    protected override void Death()
+    {
+        isDead = true;
+        anim.SetTrigger("Die");
+        movement.enabled = false;
+
+        capsuleCollider.isTrigger = true;
+    }
+
+    protected override void HitMethod(Vector3 hitPoint, int knockBack)
+    {
+        rg.AddExplosionForce(knockBack, hitPoint, 10);
+    }
+
+    
 }

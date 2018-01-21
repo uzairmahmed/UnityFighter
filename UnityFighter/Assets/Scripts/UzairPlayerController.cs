@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class UzairPlayerController : MonoBehaviour {
+public class UzairPlayerController : UzairBaseController
+{
 
     public float speed = 6f;
 
     Vector3 movement;
-    Animator anim;
-    Rigidbody playerRigidBody;
+    Rigidbody rg;
 
     bool isGrounded = true;
 
@@ -19,30 +19,25 @@ public class UzairPlayerController : MonoBehaviour {
     float ff;
     float j;
 
-    private void Awake()
+    protected override void Start()
     {
         anim = GetComponent<Animator>();
-        playerRigidBody = GetComponent<Rigidbody>();
+        rg = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    protected override void Update()
     {
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
         f = Input.GetAxisRaw("Fire1");
-        ff = Input.GetAxisRaw("Fire2");
         j = Input.GetAxisRaw("Jump");
-
         
-        Moving();
-        Turning();
-        FlightSequence();
-        //Jumping();
+        Move();
         Attack();
-
+        AttackAnimManager();
     }
 
-    void Moving()
+    void Move()
     {
         bool walking = (v != 0f);
         anim.SetBool("Idle", !walking);
@@ -52,41 +47,27 @@ public class UzairPlayerController : MonoBehaviour {
         {
             anim.SetInteger("Speed", 1);
         }
-    }
 
-    void Turning()
-    {
         if (h > 0)
             transform.Rotate(Vector3.up * speed);
         else if (h < 0)
             transform.Rotate(Vector3.up * -speed);
-    }
 
-    void Jumping()
-    {
-        if (j != 0)
-        {
-            playerRigidBody.AddForce(new Vector3(0,500));
-            anim.SetTrigger("Jump");
-        }
-    }
-
-    void FlightSequence()
-    {
         anim.SetBool("OnGround", checkIfGrounded());
+
+        /*if (j != 0)
+        {
+            rg.AddForce(new Vector3(0, 500));
+            anim.SetTrigger("Jump");
+        }*/
     }
 
-    void Attack()
+    protected override void Attack()
     {
         if (f != 0)
         {
             anim.SetBool("Moving", false);
             anim.SetTrigger("Attack");
         }
-    }
-
-    bool checkIfGrounded()
-    {
-        return Physics.Raycast(transform.position, -Vector3.up, 0.5f);
     }
 }

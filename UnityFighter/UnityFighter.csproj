@@ -94,11 +94,10 @@
     <Compile Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
     <Compile Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Scripts\Triangles.cs" />
     <Compile Include="Assets\Prefabs\Knight\scripts\rotator.cs" />
-    <Compile Include="Assets\Scripts\UzairCameraController.cs" />
-    <Compile Include="Assets\Scripts\UzairEnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\UzairBaseController.cs" />
+    <Compile Include="Assets\Scripts\UzairBaseHealth.cs" />
     <Compile Include="Assets\Scripts\UzairEnemyController.cs" />
     <Compile Include="Assets\Scripts\UzairEnemyHealth.cs" />
-    <Compile Include="Assets\Scripts\UzairPlayerAttack.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerController.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerHealth.cs" />
     <Compile Include="Assets\Scripts\UzairSwordProp.cs" />
