@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class UzairPlayerController : UzairBaseController
 {
-
     public float speed = 6f;
 
     Vector3 movement;
     Rigidbody rg;
-    
+
+    public AudioSource attackSound;
+
     float h;
     float v;
     float f;
@@ -73,6 +74,7 @@ public class UzairPlayerController : UzairBaseController
         {
             anim.SetBool("Moving", false);
             anim.SetTrigger("Attack");
+            attackSound.Play();
         }
     }
 }

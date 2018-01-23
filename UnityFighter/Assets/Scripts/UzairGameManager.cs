@@ -11,7 +11,7 @@ public class UzairGameManager : MonoBehaviour {
     public Text waveText;
     public Text timerText;
     public Text swordText;
-
+    public Text enemyText;
 
     public float startTimer;
 
@@ -47,7 +47,7 @@ public class UzairGameManager : MonoBehaviour {
             NextWave(currentWave);
         }
         swordDamage = sword.getDamage();
-
+        enemyText.text = (zombiesLeft + " Zombies Left");
         timerText.text = ("Time: " + CurrentTime() + " seconds.");
     }
     
@@ -88,7 +88,7 @@ public class UzairGameManager : MonoBehaviour {
         
         waveText.text = "Wave " + currentWave;
         waveText.color = Color.red;
-        swordText.text = "Sword Level " + wave + ", Attack: " + swordDamage;
+        swordText.text = "Sword Level " + wave;
         swordText.color = Color.white;
 
     }

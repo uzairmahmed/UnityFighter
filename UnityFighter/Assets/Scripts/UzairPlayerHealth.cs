@@ -8,7 +8,7 @@ public class UzairPlayerHealth : UzairBaseHealth {
     public Slider healthSlider;
     public Image damageImage;
 
-    public AudioSource playerAudio;
+    public AudioSource hitAudio;
 
     public Slider energySlider;
 
@@ -30,8 +30,6 @@ public class UzairPlayerHealth : UzairBaseHealth {
         ucp = GetComponent<UzairCharacterProp>();
         startingHealth = ucp.startingHealth;
         currentHealth = startingHealth;
-
-        playerAudio = GetComponent<AudioSource>();
 
         anim = GetComponent<Animator>();
         rg = GetComponent<Rigidbody>();
@@ -101,8 +99,6 @@ public class UzairPlayerHealth : UzairBaseHealth {
 
     protected override void Death()
     {
-        //playerAudio.clip = deathClip;
-
         isDead = true;
         anim.SetTrigger("Die");
         movement.enabled = false;
@@ -110,6 +106,6 @@ public class UzairPlayerHealth : UzairBaseHealth {
 
     protected override void HitMethod(Vector3 hitPoint, int knockBack)
     {
-        playerAudio.Play();
+        hitAudio.Play();
     }
 }

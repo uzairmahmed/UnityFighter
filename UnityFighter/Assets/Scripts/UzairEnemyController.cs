@@ -33,6 +33,8 @@ public class UzairEnemyController : UzairBaseController
         playerHealth = player.GetComponent<UzairPlayerHealth>();
         playerController = player.GetComponent<UzairPlayerController>();
         ucp = GetComponent<UzairCharacterProp>();
+        nav = GetComponent<NavMeshAgent>();
+
 
         attackInterval = ucp.attackInterval;
         attackDamage = ucp.attackDamage;
@@ -41,8 +43,8 @@ public class UzairEnemyController : UzairBaseController
         enemyHealth = GetComponent<UzairEnemyHealth>();
 
         anim.speed = speed;
+        nav.speed = speed*3;
 
-        nav = GetComponent<NavMeshAgent>();
         transform.localScale += new Vector3(ucp.scale, ucp.scale, ucp.scale);
     }
 
