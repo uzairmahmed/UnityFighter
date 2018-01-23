@@ -9,21 +9,33 @@ public class UzairGameManager : MonoBehaviour {
 
     public ArrayList ZombieArray = new ArrayList();
 
-    public int arSiz;
+    GameObject[] spawners = new GameObject[8];
+
+    public UzairSwordProp sword;
+
+    public int swordDamage;
+
+    public int currentWave;
+    public int waveSize = 5;
+    public int waveIncrease = 2;
+    public int zombiesLeft;
 
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnZombie();
-        }
+        spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        currentWave = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-        arSiz = ZombieArray.Count;
-	}
+        zombiesLeft = ZombieArray.Count;
+        if (zombiesLeft <= 0)
+        {
+            currentWave += 1;
+            NextWave(currentWave);
+        }
+        swordDamage = sword.getDamage();
+    }
 
     public void SpawnZombie()
     {
@@ -31,17 +43,32 @@ public class UzairGameManager : MonoBehaviour {
         switch (type)
         {
             case 0:
-                Instantiate(type1Zom, gameObject.transform);
+                Instantiate(type1Zom, GetZombieSpawner(), Quaternion.identity, gameObject.transform);
                 return;
 
             case 1:
-                Instantiate(type2Zom, gameObject.transform);
+                Instantiate(type2Zom, GetZombieSpawner(), Quaternion.identity, gameObject.transform);
                 return;
 
             case 2:
-                Instantiate(type3Zom, gameObject.transform);
+                Instantiate(type3Zom, GetZombieSpawner(), Quaternion.identity, gameObject.transform);
                 return;
         }
+    }
+
+    public void NextWave(int wave)
+    {
+        int size = wave * waveIncrease;
+        for (int i = 0; i < size; i++)
+        {
+            SpawnZombie();
+        }
+        sword.setDamage(sword.getDamage()+10);
+    }
+
+    public Vector3 GetZombieSpawner()
+    {
+        return spawners[(int)(spawners.Length * (Random.value))].transform.position;
     }
     
 }

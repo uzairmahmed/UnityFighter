@@ -16,7 +16,8 @@ public class UzairPlayerHealth : UzairBaseHealth {
     float startingEnergy = 100;
     public float currentEnergy;
 
-    int energyLossRate = 2;
+    int maxRegenPS = 10;
+    int energyLossRate = 4;
 
     // Use this for initialization
     protected override void Start()
@@ -38,13 +39,28 @@ public class UzairPlayerHealth : UzairBaseHealth {
     protected override void Update()
     {
         isHit = false;
+        healthManager(); 
         energyManager();
     }
 
     void energyManager()
     {
+        if (currentEnergy >= startingEnergy)
+        {
+            currentEnergy = startingEnergy;
+        }
         currentEnergy -= energyLossRate * Time.deltaTime;
         energySlider.value = currentEnergy;
+    }
+
+    void healthManager()
+    {
+        if (currentHealth >= startingHealth)
+        {
+            currentHealth = startingHealth;
+        }
+        currentHealth += (currentEnergy / 100) * maxRegenPS * Time.deltaTime;
+        healthSlider.value = currentHealth;
     }
 
     protected override void Death()
@@ -58,7 +74,6 @@ public class UzairPlayerHealth : UzairBaseHealth {
 
     protected override void HitMethod(Vector3 hitPoint, int knockBack)
     {
-        healthSlider.value = currentHealth;
         playerAudio.Play();
     }
 }
