@@ -29,7 +29,7 @@ public class UzairOrbProp : MonoBehaviour {
         {
             playerHealth.currentEnergy += energyGiven;
             energyGiven = 0;
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject);
         }
     }
 }

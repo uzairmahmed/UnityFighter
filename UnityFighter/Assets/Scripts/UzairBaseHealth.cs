@@ -7,37 +7,25 @@ public class UzairBaseHealth : MonoBehaviour {
     protected Animator anim;
     protected Rigidbody rg;
     protected UzairBaseController movement;
-    public Light spotLight;
+    protected UzairCharacterProp ucp;
 
     protected bool isDead;
     protected bool isHit;
 
-    public int startingHealth = 100;
-    public int currentHealth;
+    protected float startingHealth;
+    public float currentHealth;
+    
+    // Use this for initialization
+    protected virtual void Start()
+    {
+        return;
+    }
 
-    public Color hitColor = new Color(1f, 0f, 0.1f);
-    public float flashSpeed = 10f;
-
-	// Use this for initialization
-	void Start () {
-
-        currentHealth = startingHealth;
-        spotLight.color = hitColor;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(isHit)
-        {
-            //Light the Red Spotlight
-            spotLight.color = hitColor;
-        }
-        else
-        {
-            spotLight.color = Color.Lerp(hitColor, Color.clear, flashSpeed * Time.deltaTime);
-        }
-        isHit = false;
-	}
+    // Update is called once per frame
+    protected virtual void Update()
+    {
+        return;
+    }
 
     public void TakeDamage(int amount, Vector3 hitPoint, int knockback)
     {
@@ -67,4 +55,6 @@ public class UzairBaseHealth : MonoBehaviour {
     {
         return;
     }
+
+
 }

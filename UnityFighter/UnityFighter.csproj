@@ -96,8 +96,10 @@
     <Compile Include="Assets\Prefabs\Knight\scripts\rotator.cs" />
     <Compile Include="Assets\Scripts\UzairBaseController.cs" />
     <Compile Include="Assets\Scripts\UzairBaseHealth.cs" />
+    <Compile Include="Assets\Scripts\UzairCharacterProp.cs" />
     <Compile Include="Assets\Scripts\UzairEnemyController.cs" />
     <Compile Include="Assets\Scripts\UzairEnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\UzairGameManager.cs" />
     <Compile Include="Assets\Scripts\UzairOrbProp.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerController.cs" />
     <Compile Include="Assets\Scripts\UzairPlayerHealth.cs" />

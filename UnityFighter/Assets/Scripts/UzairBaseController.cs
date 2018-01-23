@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UzairBaseController : MonoBehaviour {
     protected Animator anim;
-
     public bool attacking;
 
 	// Use this for initialization

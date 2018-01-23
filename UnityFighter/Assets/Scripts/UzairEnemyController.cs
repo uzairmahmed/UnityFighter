@@ -13,10 +13,12 @@ public class UzairEnemyController : UzairBaseController
     UzairPlayerHealth playerHealth;
 
     UzairPlayerController playerController;
+    UzairCharacterProp ucp;
 
-    public float attackInterval = 1.5f;
-    public int attackDamage = 10;
-    public int attackKnockBack = 5;
+    float attackInterval;
+    int attackDamage;
+
+    float speed;
 
     bool playerInRange;
     float timer;
@@ -30,10 +32,18 @@ public class UzairEnemyController : UzairBaseController
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<UzairPlayerHealth>();
         playerController = player.GetComponent<UzairPlayerController>();
+        ucp = GetComponent<UzairCharacterProp>();
+
+        attackInterval = ucp.attackInterval;
+        attackDamage = ucp.attackDamage;
+        speed = ucp.speed;
 
         enemyHealth = GetComponent<UzairEnemyHealth>();
 
+        anim.speed = speed;
+
         nav = GetComponent<NavMeshAgent>();
+        transform.localScale += new Vector3(ucp.scale, ucp.scale, ucp.scale);
     }
 
     // Update is called once per frame
@@ -82,7 +92,7 @@ public class UzairEnemyController : UzairBaseController
         if (playerHealth.currentHealth > 0)
         {
             anim.SetTrigger("Attack");
-            playerHealth.TakeDamage(attackDamage, transform.position, attackKnockBack);
+            playerHealth.TakeDamage(attackDamage, transform.position, 0);
         }
     }
 }
