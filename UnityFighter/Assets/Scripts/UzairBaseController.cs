@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class UzairBaseController : MonoBehaviour {
     protected Animator anim;
-    public bool attacking;
 
-	// Use this for initialization
-	protected virtual void Start () {
+    public bool attacking;
+    public bool walk;
+    public bool run;
+    public bool jump;
+
+    // Use this for initialization
+    protected virtual void Start () {
         return;
 	}
 	
@@ -31,12 +35,5 @@ public class UzairBaseController : MonoBehaviour {
         {
             attacking = false;
         }
-    }
-
-    public bool checkIfGrounded()
-    {
-        return Physics.Raycast(transform.position, -Vector3.up, 0.5f);
-    }
-
-    
+    }   
 }

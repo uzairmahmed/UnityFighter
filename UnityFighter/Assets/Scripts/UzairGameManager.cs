@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class UzairGameManager : MonoBehaviour {
     public GameObject type1Zom;
     public GameObject type2Zom;
     public GameObject type3Zom;
+
+    public Text waveText;
+    public Text timerText;
+    public Text swordText;
+
+
+    public float startTimer;
 
     public ArrayList ZombieArray = new ArrayList();
 
@@ -20,14 +28,18 @@ public class UzairGameManager : MonoBehaviour {
     public int waveIncrease = 2;
     public int zombiesLeft;
 
+    public float textPulse = 50f;
+
     // Use this for initialization
     void Start () {
+        startTimer = Time.time;
         spawners = GameObject.FindGameObjectsWithTag("Spawner");
-        currentWave = 1;
+        currentWave = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         zombiesLeft = ZombieArray.Count;
         if (zombiesLeft <= 0)
         {
@@ -35,6 +47,15 @@ public class UzairGameManager : MonoBehaviour {
             NextWave(currentWave);
         }
         swordDamage = sword.getDamage();
+
+        timerText.text = ("Time: " + CurrentTime() + " seconds.");
+    }
+    
+
+    public string CurrentTime()
+    {
+        float t = ((int)(((Time.time - startTimer)%60)*10));
+        return (t/10).ToString();
     }
 
     public void SpawnZombie()
@@ -64,6 +85,12 @@ public class UzairGameManager : MonoBehaviour {
             SpawnZombie();
         }
         sword.setDamage(sword.getDamage()+10);
+        
+        waveText.text = "Wave " + currentWave;
+        waveText.color = Color.red;
+        swordText.text = "Sword Level " + wave + ", Attack: " + swordDamage;
+        swordText.color = Color.white;
+
     }
 
     public Vector3 GetZombieSpawner()

@@ -10,9 +10,7 @@ public class UzairPlayerController : UzairBaseController
 
     Vector3 movement;
     Rigidbody rg;
-
-    bool isGrounded = true;
-
+    
     float h;
     float v;
     float f;
@@ -39,13 +37,18 @@ public class UzairPlayerController : UzairBaseController
 
     void Move()
     {
-        bool walking = (v != 0f);
-        anim.SetBool("Idle", !walking);
-        anim.SetBool("Moving", walking);
+        walk = (v != 0f);
+        anim.SetBool("Idle", !walk);
+        anim.SetBool("Moving", walk);
         anim.SetInteger("Speed", -1);
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            run = true;
             anim.SetInteger("Speed", 1);
+        }
+        else
+        {
+            run = false;
         }
 
         if (h > 0)
@@ -53,13 +56,15 @@ public class UzairPlayerController : UzairBaseController
         else if (h < 0)
             transform.Rotate(Vector3.up * -speed);
 
-        anim.SetBool("OnGround", checkIfGrounded());
-
-        /*if (j != 0)
+        if (j != 0)
         {
-            rg.AddForce(new Vector3(0, 500));
-            anim.SetTrigger("Jump");
-        }*/
+            jump = true;
+            rg.AddForce(new Vector3(0, 100000));
+        }
+        else
+        {
+            jump = false;
+        }
     }
 
     protected override void Attack()
