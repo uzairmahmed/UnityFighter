@@ -38,7 +38,7 @@ public class UzairPlayerController : UzairBaseController
     }
 
     //Update is called once per frame
-    protected override void Update()
+    protected override void FixedUpdate()
     {
         //Gets and updates each input per axis
         h = Input.GetAxisRaw("Horizontal");

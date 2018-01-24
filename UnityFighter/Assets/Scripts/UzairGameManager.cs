@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 /**
  * this pretty much runs everything.
@@ -174,5 +176,12 @@ public class UzairGameManager : MonoBehaviour {
     {
         float t = ((int)(((Time.time - startTimer) % 60) * 10));
         return (t / 10).ToString();
+    }
+
+    //Moves to the next scene
+    public void BeginButton()
+    {
+        //Begin the Game Scene
+        SceneManager.LoadScene("Level");
     }
 }

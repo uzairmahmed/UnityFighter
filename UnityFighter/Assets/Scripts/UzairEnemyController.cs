@@ -70,7 +70,7 @@ public class UzairEnemyController : UzairBaseController
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void FixedUpdate()
     {
         //begins a timer
         timer += Time.deltaTime;
