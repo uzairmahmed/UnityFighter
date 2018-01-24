@@ -94,6 +94,7 @@
     <Compile Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
     <Compile Include="Assets\Animations\RPG Character Animation Pack\Elements\ImageEffects\Scripts\Triangles.cs" />
     <Compile Include="Assets\Prefabs\Knight\scripts\rotator.cs" />
+    <Compile Include="Assets\Scripts\StartButton.cs" />
     <Compile Include="Assets\Scripts\UzairBaseController.cs" />
     <Compile Include="Assets\Scripts\UzairBaseHealth.cs" />
     <Compile Include="Assets\Scripts\UzairCharacterProp.cs" />

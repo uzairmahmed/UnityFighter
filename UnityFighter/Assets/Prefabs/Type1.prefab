@@ -1529,10 +1529,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
+  isDead: 0
+  playerAudio: {fileID: 0}
+  gmanager: {fileID: 0}
   energySphere: {fileID: 1920247608278894, guid: 26ca87ac62f47eb41971067fc17cb4ea,
     type: 2}
-  gmanager: {fileID: 0}
-  playerAudio: {fileID: 0}
 --- !u!114 &114830709586689282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1544,11 +1545,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a89ced67a08b7747b60924ef5c9c676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startingHealth: 250
   speed: 1
-  attackDamage: 10
-  scale: 0
+  attackDamage: 25
   attackInterval: 1.5
+  scale: 0
 --- !u!114 &114994045080402460
 MonoBehaviour:
   m_ObjectHideFlags: 1

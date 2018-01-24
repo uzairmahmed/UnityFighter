@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Properties for the Player Weapon. 
+ * Nothing too fancy, just setter and getter 
+ * methods for attack and knockback.
+ **/
+
 public class UzairSwordProp : MonoBehaviour {
 
     int swordDamage = 25;
@@ -26,15 +32,4 @@ public class UzairSwordProp : MonoBehaviour {
     {
         return swordKnockBack;
     }
-    
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
